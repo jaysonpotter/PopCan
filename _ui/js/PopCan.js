@@ -4,6 +4,8 @@
 
     var canvas,
         ctx,
+        baseWidth,
+        baseHeight,
         args;
 
     PopCan.play = function (yoCanvas, yoContext) {
@@ -12,22 +14,22 @@
         canvas = yoCanvas;
         ctx = yoContext || canvas.getContext('2d');
 
+        // full viewport
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
         // store initial canvas size to use when scaling the canvas for high dpi
-        var baseWidth = canvas.width,
-            baseHeight = canvas.height,
+        baseWidth = canvas.width;
+        baseHeight = canvas.height;
 
         // Pixel density info gathering and ratio makin
-            pixelRatio = window.devicePixelRatio || 1,
+        var pixelRatio = window.devicePixelRatio || 1,
             backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
                                     ctx.mozBackingStorePixelRatio    ||
                                     ctx.msBackingStorePixelRatio     ||
                                     ctx.oBackingStorePixelRatio      ||
                                     ctx.backingStorePixelRatio       || 1,
             ratio = pixelRatio / backingStoreRatio;
-
-        // full viewport
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
 
         // If there are double or more pixels, scale the drawing times that ratio and stuff it back into the original dimensions
         if (pixelRatio > 1) {
