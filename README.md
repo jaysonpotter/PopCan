@@ -1,13 +1,19 @@
 # PopCan
 --------
 
-This allows you to push drawings to your canvas and kick off the animation cycle. Why clutter your delicous code with 2d contexts, move to's, and bla bla bla's when you can just call uppon PopCan to get you started?
+This allows you to push drawings to your canvas and kick off the animation cycle.
 
 
 ## Feature Overview
 
-- Kicks off full screen canvas animations
-- Accepts unlimited drawings via parameter
+- Kicks off full screen canvas animations by passing in your canvas and drawing context; like so PopCan.play(yourCanvas, yourContext)
+- Accepts unlimited drawings as functions via parameter; like so PopCan.drawings(drawThis, andThis, thenThis, andMore)
+- Adapts the canvas for hi-resolution displays
+
+
+## In Development 
+- fix issue with iPad with hi-res screen in landscape. In portrait it works fine. 
+- fix issue to resize canvas when orientation has changed, or viewport size changes.
 
 
 ## Demo
@@ -23,13 +29,14 @@ This allows you to push drawings to your canvas and kick off the animation cycle
         var canvas = document.getElementById('PopCan'),
             ctx = canvas.getContext('2d');
 
-        // make a drawing
+        // make a drawing a function
         var popCanDrawing = function () {
             ctx.fillStyle = "rgb(200,0,0)";
             ctx.fillRect (10, 10, 55, 50);
         }
 
         if(canvas && ctx) {
+            // 
             PopCan.play(canvas, ctx);
             PopCan.drawings(popCanDrawing);
         }
