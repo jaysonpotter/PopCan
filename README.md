@@ -15,13 +15,28 @@ This allows you to push drawings to your canvas and kick off the animation cycle
 *View a demo of [PopCan](http://projects.jaysonpotter.com/PopCan/)!*
 
 
+# How to use PopCan
+
+    window.onload = function () {
+        
+        // store canvas and context
+        var canvas = document.getElementById('PopCan'),
+            ctx = canvas.getContext('2d');
+
+        // make a drawing
+        var popCanDrawing = function () {
+            ctx.fillStyle = "rgb(200,0,0)";
+            ctx.fillRect (10, 10, 55, 50);
+        }
+
+        if(canvas && ctx) {
+            PopCan.play(canvas, ctx);
+            PopCan.drawings(popCanDrawing);
+        }
+    }
+
+
 ## History
 
 Sunday April 14, 2013
 * The World Premier of PopCan
-
-
-# How to use PopCan
-
-    PopCan.play(YoCANVAS, CanvasCONTEXT);
-    PopCan.drawings(ALL, THE, DRAWINGZ);
