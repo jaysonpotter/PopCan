@@ -9,11 +9,7 @@ This allows you to push drawings to your canvas and kick off the animation cycle
 - Kicks off full screen canvas animations by passing in your canvas and drawing context; like so PopCan.play(yourCanvas, yourContext)
 - Accepts unlimited drawings as functions via parameter; like so PopCan.drawings(drawThis, andThis, thenThis, andMore)
 - Adapts the canvas for hi-resolution displays
-
-
-## In Development 
-- fix issue with iPad with hi-res screen in landscape. In portrait it works fine. 
-- fix issue to resize canvas when orientation has changed, or viewport size changes.
+- Starts animation loop
 
 
 ## Demo
@@ -41,6 +37,11 @@ This allows you to push drawings to your canvas and kick off the animation cycle
             PopCan.drawings(popCanDrawing);
         }
     }
+
+
+## In Development 
+- fix issue with iPad with hi-res screen in landscape. In portrait it works fine. 
+- fix issue to resize canvas when orientation has changed, or viewport size changes.
 
 
 ## History
