@@ -32,8 +32,9 @@ This allows you to push drawings to your canvas and kick off the animation cycle
         }
 
         if(canvas && ctx) {
-            // 
+            // tell PopCan where you draw
             PopCan.play(canvas, ctx);
+            //tell PopCan what to draw
             PopCan.drawings(popCanDrawing);
         }
     }
