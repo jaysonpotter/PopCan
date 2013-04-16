@@ -3,6 +3,15 @@
 
 This allows you to push drawings to a canvas and kick off the animation cycle.
 
+* Author: Jayson Potter (c) 2013
+* License: CC BY-SA 3.0
+
+
+## Demo
+
+*View a demo of [PopCan](http://projects.jaysonpotter.com/PopCan/)!*
+*Advanced usage of PopCan ... [JoiStyk](http://projects.jaysonpotter.com/JoiStyk/)!*
+
 
 ## Feature Overview
 
@@ -12,30 +21,27 @@ This allows you to push drawings to a canvas and kick off the animation cycle.
 - Starts animation loop
 
 
-## Demo
-
-*View a demo of [PopCan](http://projects.jaysonpotter.com/PopCan/)!*
-*Advanced usage of PopCan ... [JoiStyk](http://projects.jaysonpotter.com/JoiStyk/)!*
-
-
 # How to use PopCan
+
 ```html
 <canvas id="PopCan">
 	<p>Awe Snap! Your browser does not support canvas, thus not able to support PopCan.</p>
-    <p>For that I am sorry, but you may be in luck by upgrading your browser.</p>
-    <a href="http://www.updatebrowser.net/">UpdateBrowser.net</a>
+	<p>For that I am sorry, but you may be in luck by upgrading your browser.</p>
+	<a href="http://www.updatebrowser.net/">UpdateBrowser.net</a>
 </canvas>
 ```
+
 ```css
 body,
 #PopCan {
- 	position: absolute;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 }
 ```
+
 ```javascript
 window.onload = function () {
     
@@ -43,7 +49,8 @@ window.onload = function () {
     var canvas = document.getElementById('PopCan'),
         ctx = canvas.getContext('2d'),
 
-    // store your drawing in an anonymous function variable
+    // stored drawing in an anonymous function variable
+    // not limited to this method. see JoiStyk demo.
         lilBox = function () {
             ctx.fillStyle = "rgb(200,0,0)";
             ctx.fillRect (10, 10, 55, 50);
