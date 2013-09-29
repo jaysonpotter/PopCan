@@ -5,7 +5,15 @@
         ctx,
         baseWidth,
         baseHeight,
-        args;
+        args,
+        delayThis = (function () {
+    		var timer = 0;
+    
+    		return function (callback, ms) {
+    			clearTimeout(timer);
+    			timer = setTimeout(callback, ms || 2000);
+    		};
+    	}());
 
     PopCan.play = function (yoCanvas, yoContext) {
 
@@ -22,19 +30,6 @@
         baseWidth = canvas.width;
         baseHeight = canvas.height;
 
-        // Orientation change and window resizing fire this muther
-        // could add a delay of 200 ms
-        window.addEventListener("resize", function() {
-            // Update that canvas size
-        	canvas.width = window.innerWidth;
-        	canvas.height = window.innerHeight;
-
-        	baseWidth = canvas.width;
-        	baseHeight = canvas.height;
-
-        	setPixelDensity();
-        }, false);
-
         function setPixelDensity() {
             // Pixel density info gathering and ratio makin
             var pixelRatio = window.devicePixelRatio || 1,
@@ -44,20 +39,25 @@
                                     ctx.oBackingStorePixelRatio      ||
                                     ctx.backingStorePixelRatio       || 1,
                 ratio = pixelRatio / backingStoreRatio;
+                
+            canvas.width = baseWidth * ratio;
+            canvas.height = baseHeight * ratio;
+            canvas.style.width = baseWidth + 'px';
+            canvas.style.height = baseHeight + 'px';
+            
+            ctx.scale(ratio, ratio);
+        }
+        
+        function adjustOnResize() {
+        	canvas.width = window.innerWidth;
+        	canvas.height = window.innerHeight;
+        	baseWidth = canvas.width;
+        	baseHeight = canvas.height;
 
-            // If there are double or more pixels, scale the drawing times that ratio and stuff it back into the original dimensions
-            // noticed on Android it's not perfectly pretty. Get some blockage.
-            if (pixelRatio > 1) {
-                canvas.width = baseWidth * ratio;
-                canvas.height = baseHeight * ratio;
-                canvas.style.width = baseWidth + 'px';
-                canvas.style.height = baseHeight + 'px';
-                ctx.scale(ratio, ratio);
-            }
+        	setPixelDensity();
         }
 
         function clearCanvas() {
-            // This resets the canvas to draw the next "frame"
             // Try and optimise this to only redraw changed areas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
@@ -74,7 +74,6 @@
             }
         }
 
-        //START Animation
         function animate() {
             draw();
             requestAnimFrame(animate);
@@ -96,10 +95,24 @@
 
             animate();
         }
-    }
+
+        window.addEventListener("resize", function(){
+            delayThis(adjustOnResize, 100);
+        }, false);
+        
+    };
 
     PopCan.drawings = function (drawThese) {
         args = arguments;
-    }
+    };
 
+    PopCan.gimmie = {
+        baseheight: function () {
+            return baseHeight;
+        },
+        basewidth: function () {
+            return baseWidth;
+        }
+    };
+    
 }(window.PopCan = window.PopCan || {}));
