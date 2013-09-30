@@ -18,6 +18,7 @@ This allows you to push drawings to a canvas and kick off the animation cycle.
 - Kicks off full viewport canvas animations by passing in your canvas and drawing context; like so PopCan.play(yourCanvas, yourContext)
 - Accepts unlimited drawings as functions via parameter; like so PopCan.drawings(drawThis, andThis, thenThis, andMore)
 - Adapts the canvas for hi-resolution displays
+- exposes the canvas style dimensions that PopCan sets
 - Starts animation loop
 
 
@@ -27,7 +28,7 @@ This allows you to push drawings to a canvas and kick off the animation cycle.
 <canvas id="PopCan">
 	<p>Awe Snap! Your browser does not support canvas, thus not able to support PopCan.</p>
 	<p>For that I am sorry, but you may be in luck by upgrading your browser.</p>
-	<a href="http://www.updatebrowser.net/">UpdateBrowser.net</a>
+	<a href="http://browsehappy.com/">browsehappy.com</a>
 </canvas>
 ```
 
